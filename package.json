@@ -1,0 +1,21 @@
+{
+  "name": "testnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serves.js",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "express": "^4.17.1",
+    "sequelize": "^6.3.5",
+    "tedious": "^9.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon serves.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
