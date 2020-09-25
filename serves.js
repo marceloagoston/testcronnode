@@ -9,7 +9,7 @@
 //  linea  44 a 61 Funcion obtenerReporte() que genera el reporte a enviar por mail basandose en ambas consultas anteriores
 //  linea  68 Se invoca la funcion generarReporte() que ejecuta todo el codigo anterior
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+const fs = require('fs')
 const express = require('express')
 const { Sequelize, QueryTypes } = require('sequelize');
 const app = express()
