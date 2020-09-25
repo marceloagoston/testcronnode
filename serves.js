@@ -22,7 +22,7 @@ const sequelize = new Sequelize('NBCH.Tracking', 'Usuario.NBCH.Tracking', 'Usuar
 async function generarReporte(){
 
   const solicitudesPendientesTotales = await sequelize.query(`
-                  SELECT S.sucursal_cercana, count(*) AS cantidad_total_de_pendientes, max(S.updatedAt) AS ultima_actualización 
+                  SELECT S.sucursal_cercana, count(*) AS cantidad_total_de_pendientes, max(S.updatedAt) AS ultima_actualizacion 
                   FROM solicitud_estados SE 
                   JOIN solicitudes S on SE.id_solicitud = S.id 
                   JOIN solicitantes Sol on Sol.id = S.id_solicitante 
@@ -32,7 +32,7 @@ async function generarReporte(){
   , { type: QueryTypes.SELECT });
 
   const solicitudesPendientesAtrasadas = await sequelize.query(`
-      SELECT S.sucursal_cercana, count(*) AS pendientes_atrasadas , max(S.updatedAt) AS ultima_actualización
+      SELECT S.sucursal_cercana, count(*) AS pendientes_atrasadas , max(S.updatedAt) AS ultima_actualizacion
       FROM solicitud_estados SE 
       JOIN solicitudes S on SE.id_solicitud = S.id 
       JOIN solicitantes Sol on Sol.id = S.id_solicitante 
