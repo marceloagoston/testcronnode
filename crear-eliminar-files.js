@@ -1,12 +1,12 @@
 //parte que crea el archivo
 
-/* const filePath = './reporte.xslx'
+const filePath = `${__dirname}/reporte.xlxs`
 
-const fd = fs.openSync(filePath, 'w') */
+const fd = fs.openSync(filePath, 'w')
 
 // parte que elimina
 
-const path = './reporte.xslx'
+/* const path = `${__dirname}/reporte.xlxs`
 
 fs.access(path, fs.F_OK, (err) => {
   if (err) {
@@ -21,4 +21,4 @@ fs.access(path, fs.F_OK, (err) => {
   } catch(err) {
     console.error(err)
   }} 
-})
+}) */

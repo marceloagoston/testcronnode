@@ -27,7 +27,7 @@ async function generarReporte(){
                   JOIN solicitudes S on SE.id_solicitud = S.id 
                   JOIN solicitantes Sol on Sol.id = S.id_solicitante 
                   JOIN estados E on E.id = SE.id_estado 
-                  WHERE SE.id_estado <> 3 
+                  WHERE SE.id_estado <> 3 AND SE.id_estado <> 7
                   GROUP BY S.sucursal_cercana`
   , { type: QueryTypes.SELECT });
 
@@ -37,12 +37,10 @@ async function generarReporte(){
       JOIN solicitudes S on SE.id_solicitud = S.id 
       JOIN solicitantes Sol on Sol.id = S.id_solicitante 
       JOIN estados E on E.id = SE.id_estado 
-      WHERE SE.id_estado <> 3  AND DATEDIFF(day, SE.fecha,getdate()) > 4
+      WHERE SE.id_estado <> 3 AND SE.id_estado <> 7 AND DATEDIFF(day, SE.fecha,getdate()) > 4
       GROUP BY S.sucursal_cercana `
   , { type: QueryTypes.SELECT }); 
 
-  async function obtenerReporte(){
-      
     let pendientes = await solicitudesPendientesTotales;
     let atrasadas = await solicitudesPendientesAtrasadas;
     let salida = [];
@@ -60,9 +58,36 @@ async function generarReporte(){
       });
       
     });
-    console.log(salida)    
-  }
-
-  console.log(obtenerReporte());
+    console.log(salida)
+    return salida    
+  
 }
 generarReporte();
+/* 
+//parte que crea el archivo
+
+const filePath = `${__dirname}/reporte.xlxs`
+
+const fd = fs.openSync(filePath, 'w')
+
+// parte que elimina
+
+const path = `${__dirname}/reporte.xlxs`
+
+setTimeout(tset,3000);
+function tset(){
+  fs.access(path, fs.F_OK, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    } else {
+      
+      try {
+      fs.unlinkSync(path)
+      console.log('archivo eliminado')
+      //file removed
+    } catch(err) {
+      console.error(err)
+    }} 
+  })
+} */
